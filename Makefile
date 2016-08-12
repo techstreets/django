@@ -1,4 +1,4 @@
-IMAGE_NAME := django-sandbox
+IMAGE_NAME := django-prod
 IMAGE_TAG := 1.9.0
 
 .PHONY: all clean build

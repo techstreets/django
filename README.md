@@ -1,1 +1,1 @@
-# django-sandbox
+# django-prod
