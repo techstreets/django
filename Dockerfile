@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y net-tools curl wget vim git
 RUN pip install --upgrade pip
 # install nginx
 RUN apt-get update && apt-get install -y nginx=${NGINX_VERSION}
+RUN rm /etc/nginx/sites-enabled/default
+RUN ln -s /opt/app/nginx/django_config /etc/nginx/sites-enabled/default
 # install gunicorn
 RUN pip install gunicorn==${GUNICORN_VERSION}
 # install supervisor
