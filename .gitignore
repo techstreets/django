@@ -63,3 +63,5 @@ target/
 
 # Logs
 logs/
+static/
+media/
