@@ -4,7 +4,7 @@
 This is simple django production ready docker container. It contains nginx+gunicorn serving static content and running wsgi server for django project, managed by supervisord.
 
 
-Simple usage example:
+## Simple usage example
 
 ~~~~
 # clone django structure for easy start
@@ -17,7 +17,7 @@ git pull upstream master
 docker run --name django-app --restart=always -d -p 80:80 -v $(pwd):/opt/app bradojevic/django-prod
 ~~~~
 
-Using it with MYSQL:
+## Using it with MYSQL
 
 in settings.py set mysql as your database
 
@@ -47,3 +47,16 @@ docker run --name django-app --restart=always -d -p 80:80 \
 ~~~~
 
 Note: 172.17.0.1 is my docker host ip, you can find yours using `ifconfig | grep -A 1 docker`.
+
+
+## Customizations
+
+You should add your git repo as 'origin' remote so something like this
+
+~~~~
+cd django-prod
+git remote add origin http://your-git-repo
+git push origin master
+~~~~
+
+Now you could edit `run` command in Makefile to support your needs, and commit this to your git repo.
