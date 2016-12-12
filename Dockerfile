@@ -1,5 +1,13 @@
-FROM django:1.9.2-python2
+FROM python:2.7.12
 MAINTAINER bradojevic@gmail.com
+
+RUN apt-get update && apt-get install -y \
+    gcc gettext mysql-client libmysqlclient-dev \
+    postgresql-client libpq-dev sqlite3 \
+    --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
+ENV DJANGO_VERSION 1.10.4
+RUN pip install mysqlclient psycopg2 django=="$DJANGO_VERSION"
 
 ENV NGINX_VERSION 1.6.2-5+deb8u2
 ENV GUNICORN_VERSION 19.4.1

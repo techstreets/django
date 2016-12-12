@@ -1,5 +1,5 @@
 IMAGE_NAME := bradojevic/django-prod
-IMAGE_TAG := 1.9.0
+IMAGE_TAG := 1.10.4
 CONTAINER_NAME := django-app
 
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
