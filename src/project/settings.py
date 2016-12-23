@@ -25,6 +25,11 @@ SECRET_KEY = '3^*gla4yobv6!4l_0r4bb6am=qoe3!-^1+arl@q48=m!b7*sfd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ADMINS = (
+    # ('Your Name', 'your_email@example.com'),
+)
+MANAGERS = ADMINS
+
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['*']
 
@@ -141,3 +146,21 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.normpath(os.path.join(BASE_DIR, '..', 'media'))
 
 # PROJECT_DISPLAY_NAME = 'Project Name'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}
