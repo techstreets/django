@@ -15,7 +15,26 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf import settings
+from django.views.generic import View
+from django.http import HttpResponse
+
+project_name = getattr(settings, 'PROJECT_DISPLAY_NAME', 'Django')
+
+admin.site.site_header = '%s Admin' % project_name
+admin.site.index_title = '%s administration' % project_name
+admin.site.site_title = '%s Admin' % project_name
+
+admin.autodiscover()
+
+
+class IndexView(View):
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('<h1>%s</h1>' % project_name)
+
 
 urlpatterns = [
+    url(r'^$', IndexView.as_view(), name='index'),
     url(r'^admin/', admin.site.urls),
 ]
