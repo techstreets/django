@@ -1,8 +1,8 @@
-IMAGE_NAME := bradojevic/django-prod
+IMAGE_NAME := techstreets/django
 IMAGE_TAG := 1.10.4
 CONTAINER_NAME := django_app
 ENV_FILE_NAME := django_app_env
-HOST_PORT := 8001
+HOST_PORT := 8000
 
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
@@ -19,11 +19,12 @@ else
 	ENV_FILE := ${${ENV_FILE_NAME}}
 endif
 
-.PHONY: all deploy build clean create kill start stop restart shell migrate static docker_ip gen_secret
+.PHONY: all depend build clean create kill start stop restart shell migrate static docker_ip gen_secret
 
-all: start
+all: create depend migrate static restart
 
-deploy: migrate static restart
+depend:
+	docker exec -it $(CONTAINER_NAME) pip install -r requirements.txt
 
 build:
 	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) .
