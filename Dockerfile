@@ -6,6 +6,11 @@ RUN apt-get update && apt-get install -y \
     postgresql-client libpq-dev sqlite3 \
     --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
+# we need to install pip2 but right after it revert pip to point to pip3
+RUN curl -fsSL https://bootstrap.pypa.io/get-pip.py | python2.7 -
+# make pip point to pip3 by default
+RUN cp $(which pip3) $(which pip)
+
 ENV DJANGO_VERSION 1.10.4
 RUN pip install mysqlclient psycopg2 django=="$DJANGO_VERSION"
 
