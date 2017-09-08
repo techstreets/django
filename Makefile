@@ -1,5 +1,5 @@
 IMAGE_NAME := techstreets/django
-IMAGE_TAG := 1.10.4
+IMAGE_TAG := 1.10.4.py3
 CONTAINER_NAME := django_app
 ENV_FILE_NAME := django_app_env
 HOST_PORT := 8000

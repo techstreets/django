@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y \
 RUN curl -fsSL https://bootstrap.pypa.io/get-pip.py | python2.7 -
 # make pip point to pip3 by default
 RUN cp $(which pip3) $(which pip)
+RUN pip2 install --upgrade pip
+RUN pip3 install --upgrade pip
 
 ENV DJANGO_VERSION 1.10.4
 RUN pip install mysqlclient psycopg2 django=="$DJANGO_VERSION"
@@ -23,8 +25,6 @@ ENV APP_ROOT /opt/app
 RUN mkdir -p ${APP_ROOT}
 # install common tools
 RUN apt-get update && apt-get install -y net-tools curl wget vim git
-RUN pip install --upgrade pip
-RUN curl -fsSL https://bootstrap.pypa.io/get-pip.py | python2.7 -
 # install nginx
 RUN apt-get update && apt-get install -y nginx=${NGINX_VERSION}
 RUN rm /etc/nginx/sites-enabled/default
