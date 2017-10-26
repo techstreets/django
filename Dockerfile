@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
 ENV DJANGO_VERSION 1.10.4
 RUN pip install mysqlclient psycopg2 django=="$DJANGO_VERSION"
 
-ENV NGINX_VERSION 1.6.2-5+deb8u4
+ENV NGINX_VERSION 1.6.2-5+deb8u5
 ENV GUNICORN_VERSION 19.4.1
 ENV SUPERVISOR_VERSION 3.1.0
 ENV APP_ROOT /opt/app
