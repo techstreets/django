@@ -15,7 +15,7 @@ ENV SUPERVISOR_VERSION 3.1.0
 ENV APP_ROOT /opt/app
 
 # need to fix this link to point to python2
-RUN ln -fs /usr/bin/python2 /usr/local/bin/python
+RUN ln -fs /usr/local/bin/python2.7 /usr/local/bin/python
 # Define working directory.
 RUN mkdir -p ${APP_ROOT}
 # install common tools
