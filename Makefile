@@ -24,6 +24,7 @@ endif
 all: create depend migrate static restart
 
 depend:
+	docker exec -it $(CONTAINER_NAME) ./dependencies.sh
 	docker exec -it $(CONTAINER_NAME) pip install -r requirements.txt
 
 build:
@@ -34,6 +35,7 @@ clean:
 
 create:
 	docker run --name $(CONTAINER_NAME) --restart=always --env-file $(ENV_FILE) -d -p $(HOST_PORT):80 -v $(MAKE_DIR):/opt/app $(IMAGE_NAME):$(IMAGE_TAG)
+	docker exec -it $(CONTAINER_NAME) ./hooks/post_create/run.sh
 
 kill:
 	docker stop $(CONTAINER_NAME) && docker rm $(CONTAINER_NAME)
