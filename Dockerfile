@@ -14,6 +14,8 @@ ENV GUNICORN_VERSION 19.4.1
 ENV SUPERVISOR_VERSION 3.1.0
 ENV APP_ROOT /opt/app
 
+# need to fix this link to point to python2
+RUN ln -fs /usr/bin/python2 /usr/local/bin/python
 # Define working directory.
 RUN mkdir -p ${APP_ROOT}
 # install common tools
