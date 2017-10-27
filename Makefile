@@ -63,3 +63,6 @@ docker_ip:
 
 gen_secret:
 	@python -c 'import random; print "".join([random.SystemRandom().choice("abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)") for i in range(50)])'
+
+dump_db:
+	docker exec -it $(CONTAINER_NAME) bash ./scripts/dump_db.sh
