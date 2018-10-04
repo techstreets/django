@@ -21,7 +21,7 @@ endif
 
 .PHONY: all depend build clean create kill start stop restart shell migrate static docker_ip gen_secret
 
-all: create depend migrate static restart
+all: create depend migrate static restart self_test
 
 depend:
 	docker exec -it $(CONTAINER_NAME) ./dependencies.sh
@@ -51,6 +51,9 @@ restart:
 
 shell:
 	docker exec -it $(CONTAINER_NAME) bash
+
+self_test:
+	docker exec -it $(CONTAINER_NAME) ./hooks/self_test/run.sh
 
 migrate:
 	docker exec -it $(CONTAINER_NAME) python ./src/manage.py migrate
