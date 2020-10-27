@@ -1,6 +1,5 @@
 # django-prod
 
-
 This is simple django production ready docker container. It contains nginx+gunicorn serving static content and running wsgi server for django project, managed by supervisord.
 
 By default this machine will create container listening on all interfaces on port 8001. Container is called 'django_app'.
